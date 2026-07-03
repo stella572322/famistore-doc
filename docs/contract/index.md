@@ -25,8 +25,25 @@ title: 合約主體與財務邏輯
 
 ---
 
-合約相關連結：
+## 合約檔案連結
 
-- 主約 → 增補 → 專案項目（運費變價）
-- 客製主約：合約簽呈 (New)-COVE240500033 (2025/04/07)
-- 維運約：好賣+平台網站客製化服務及維運合約書
+合約層級結構：主約 → 增補 → 專案項目（運費變價）。
+
+:::info 第一次申請需附合約
+若是當月份**第一次申請的新增費用**，請款時需附上相對應的合約。
+:::
+
+| 合約 | 文號 / 日期 | 連結 |
+| --- | --- | --- |
+| 客製主約：合約簽呈 (New) | COVE240500033（2025/04/07） | [PDF](https://fetca705081-my.sharepoint.com/:b:/g/personal/adminonedrive_familynet_com_tw/IQD3nFKbTbV0S6p2C0o_gVEFAXl98ffufOjwwyfqiIVGotk?e=wSCczA) |
+| 主約：優選互動科技股份有限公司 好賣+平台維運合作合約書 | COVE230800027（2025/04/07） | [PDF](https://fetca705081-my.sharepoint.com/:b:/g/personal/adminonedrive_familynet_com_tw/IQBIYbbZpiohSpWg7SyoVFw5AW9cXTACLAlnyj7OaSM27cE?e=EqsTbC) |
+| 維運約：好賣+平台網站客製化服務及維運合約書（首頁改版 + 9 項功能追趕） | COVE240500033（2025/05/29） | [PDF](https://fetca705081-my.sharepoint.com/:b:/g/personal/adminonedrive_familynet_com_tw/IQBsevKyIw7eT5h8BZuKI3uZAbQGEK2LxAdKSlb9ud28kdA?e=lVd1jl) |
+| 客製化增補：好賣+平台網站客製化服務及維運合約書 增補協議書 | COVE241200002（2025/04/07） | [PDF](https://fetca705081-my.sharepoint.com/:b:/g/personal/adminonedrive_familynet_com_tw/IQD-JerJ4l_4SrFgOvmo9oiMAdLxFOpxYLIVteAYZTXgeWU?e=heRoFs) |
+| 專案開發：依 113 年開口合約執行「平台運費變價機制」開發作業文件用印 | COVE250700010（2025/10/27） | [PDF](https://fetca705081-my.sharepoint.com/:b:/g/personal/adminonedrive_familynet_com_tw/IQDanNPg0dbLQbEBbP8AvZxeAaDiNMpTuQFJpnVUMDbwI7o?e=HF35zv) |
+
+紙本合約管理路徑：
+
+```
+J:\09、公文管理\09-1、合約管理\112年合約\好賣+\
+COVE230800027 優選互動科技股份有限公司 好賣+平台維運合作合約書
+```
