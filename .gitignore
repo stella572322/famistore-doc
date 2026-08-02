@@ -19,9 +19,3 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Notion exports (raw source, not deployed)
-/私人和共用
-/原始參考資料
-
-# Claude Code config
-/.claude
