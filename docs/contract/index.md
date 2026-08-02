@@ -15,6 +15,14 @@ title: 合約主體與財務邏輯
 | **運籌管理單位（我方）** | 核心營運與開發管理方，負責對全家請款並統籌專案執行進度。 |
 | **優選（優候）** | 實際技術開發商，接受我方副委託執行系統建置與後續維護。 |
 
+```mermaid
+flowchart LR
+    A["全家 (FamilyMart)<br/>平台所有權人・主要出資方<br/>核定預算與策略方向"] -->|委託營運| B["運籌管理單位（我方）<br/>核心營運與開發管理<br/>統籌專案執行進度"]
+    B -->|請款| A
+    B -->|副委託開發| C["優選（優候）<br/>實際技術開發商<br/>系統建置與後續維護"]
+    C -->|請款（維運費／分潤）| B
+```
+
 ## 「以維運養開發」的財務邏輯
 
 本專案初期採取「開發合約不直接支付現金」之模式，將系統建置成本攤提至後續的「維運合約」中分期支付。
@@ -25,21 +33,21 @@ title: 合約主體與財務邏輯
 
 ---
 
-## 合約檔案連結
+## 合約清單
 
 合約層級結構：主約 → 增補 → 專案項目（運費變價）。
 
-:::info 第一次申請需附合約
+:::info[第一次申請需附合約]
 若是當月份**第一次申請的新增費用**，請款時需附上相對應的合約。
 :::
 
-| 合約 | 文號 / 日期 | 連結 |
-| --- | --- | --- |
-| 客製主約：合約簽呈 (New) | COVE240500033（2025/04/07） | [PDF](https://fetca705081-my.sharepoint.com/:b:/g/personal/adminonedrive_familynet_com_tw/IQD3nFKbTbV0S6p2C0o_gVEFAXl98ffufOjwwyfqiIVGotk?e=wSCczA) |
-| 主約：優選互動科技股份有限公司 好賣+平台維運合作合約書 | COVE230800027（2025/04/07） | [PDF](https://fetca705081-my.sharepoint.com/:b:/g/personal/adminonedrive_familynet_com_tw/IQBIYbbZpiohSpWg7SyoVFw5AW9cXTACLAlnyj7OaSM27cE?e=EqsTbC) |
-| 維運約：好賣+平台網站客製化服務及維運合約書（首頁改版 + 9 項功能追趕） | COVE240500033（2025/05/29） | [PDF](https://fetca705081-my.sharepoint.com/:b:/g/personal/adminonedrive_familynet_com_tw/IQBsevKyIw7eT5h8BZuKI3uZAbQGEK2LxAdKSlb9ud28kdA?e=lVd1jl) |
-| 客製化增補：好賣+平台網站客製化服務及維運合約書 增補協議書 | COVE241200002（2025/04/07） | [PDF](https://fetca705081-my.sharepoint.com/:b:/g/personal/adminonedrive_familynet_com_tw/IQD-JerJ4l_4SrFgOvmo9oiMAdLxFOpxYLIVteAYZTXgeWU?e=heRoFs) |
-| 專案開發：依 113 年開口合約執行「平台運費變價機制」開發作業文件用印 | COVE250700010（2025/10/27） | [PDF](https://fetca705081-my.sharepoint.com/:b:/g/personal/adminonedrive_familynet_com_tw/IQDanNPg0dbLQbEBbP8AvZxeAaDiNMpTuQFJpnVUMDbwI7o?e=HF35zv) |
+| 合約 | 文號 / 日期 |
+| --- | --- |
+| 客製主約：合約簽呈 (New) | COVE240500033（2025/04/07） |
+| 主約：優選互動科技股份有限公司 好賣+平台維運合作合約書 | COVE230800027（2025/04/07） |
+| 維運約：好賣+平台網站客製化服務及維運合約書（首頁改版 + 9 項功能追趕） | COVE240500033（2025/05/29） |
+| 客製化增補：好賣+平台網站客製化服務及維運合約書 增補協議書 | COVE241200002（2025/04/07） |
+| 專案開發：依 113 年開口合約執行「平台運費變價機制」開發作業文件用印 | COVE250700010（2025/10/27） |
 
 紙本合約管理路徑：
 
