@@ -1,0 +1,347 @@
+<title>代收代號與貨款動線</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#F7F8F6; --surface:#FFFFFF; --ink:#1E2A26; --muted:#5C6B64;
+  --line:#D8DFDA; --accent:#00875A; --accent-soft:#E3F2EA;
+  --warn:#B7791F; --warn-soft:#FAF0DC; --alert:#C0392B; --alert-soft:#FBEAE7;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121815; --surface:#1A231F; --ink:#E8EFEA; --muted:#9AABA2;
+    --line:#2E3B34; --accent:#3DD68C; --accent-soft:#1C3329;
+    --warn:#E0A94E; --warn-soft:#332A18; --alert:#E4756A; --alert-soft:#38201D;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121815; --surface:#1A231F; --ink:#E8EFEA; --muted:#9AABA2;
+  --line:#2E3B34; --accent:#3DD68C; --accent-soft:#1C3329;
+  --warn:#E0A94E; --warn-soft:#332A18; --alert:#E4756A; --alert-soft:#38201D;
+}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Noto Sans TC",-apple-system,"Microsoft JhengHei",sans-serif;
+  font-size:15px; line-height:1.75; margin:0;
+}
+.wrap{max-width:920px; margin:0 auto; padding:48px 24px 80px;}
+header{border-bottom:2px solid var(--ink); padding-bottom:20px; margin-bottom:8px;}
+.eyebrow{font-size:12px; letter-spacing:.18em; color:var(--accent); font-weight:700; text-transform:uppercase;}
+h1{font-size:34px; font-weight:900; margin:6px 0 10px; letter-spacing:.02em; text-wrap:balance;}
+.meta{color:var(--muted); font-size:13px;}
+.meta code{font-family:"IBM Plex Mono",monospace; font-size:12px;}
+h2{font-size:21px; font-weight:900; margin:52px 0 6px; letter-spacing:.02em;}
+h2 .no{color:var(--accent); font-family:"IBM Plex Mono",monospace; font-size:16px; margin-right:10px;}
+.lede{color:var(--muted); margin:0 0 18px; max-width:64ch;}
+figure{margin:0; background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:22px 18px 8px; overflow-x:auto;}
+figure svg{display:block; max-width:100%; height:auto; min-width:640px; margin:0 auto; color:var(--ink);}
+figcaption{font-size:13px; color:var(--muted); padding:10px 6px 12px; border-top:1px dashed var(--line); margin-top:14px; max-width:72ch;}
+.callout{border-left:3px solid var(--accent); background:var(--accent-soft); padding:12px 16px; border-radius:0 8px 8px 0; margin:16px 0; font-size:14px;}
+.callout.warn{border-color:var(--warn); background:var(--warn-soft);}
+.callout.alert{border-color:var(--alert); background:var(--alert-soft);}
+table{border-collapse:collapse; width:100%; background:var(--surface); font-size:14px;}
+.tablebox{border:1px solid var(--line); border-radius:10px; overflow-x:auto;}
+th{font-size:12px; letter-spacing:.08em; color:var(--muted); text-align:left; font-weight:700;
+   border-bottom:2px solid var(--ink); padding:10px 14px; white-space:nowrap;}
+td{border-bottom:1px solid var(--line); padding:9px 14px; vertical-align:top;}
+tr:last-child td{border-bottom:none;}
+td code, .code{font-family:"IBM Plex Mono",monospace; font-weight:600; font-size:13px;}
+.pill{display:inline-block; font-size:12px; font-weight:700; border-radius:999px; padding:1px 10px; white-space:nowrap;}
+.pill.ok{background:var(--accent-soft); color:var(--accent);}
+.pill.no{background:var(--bg); color:var(--muted); border:1px solid var(--line);}
+.pill.alert{background:var(--alert-soft); color:var(--alert);}
+ul.todo{padding-left:22px; max-width:70ch;}
+ul.todo li{margin-bottom:6px;}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:14px; color:var(--muted); font-size:12.5px;}
+/* SVG 共用 */
+svg text{font-family:"Noto Sans TC",sans-serif; font-size:12.5px; fill:currentColor;}
+svg text.sm{font-size:11px; fill:var(--muted);}
+svg text.mono{font-family:"IBM Plex Mono",monospace; font-weight:600;}
+svg text.b{font-weight:700;}
+svg .box{fill:var(--surface); stroke:currentColor; stroke-width:1.4;}
+svg .boxsoft{fill:var(--bg); stroke:var(--line); stroke-width:1;}
+svg .edge{stroke:currentColor; stroke-width:1.4; fill:none;}
+svg .money{stroke:var(--accent); stroke-width:2; fill:none;}
+svg .money-t{fill:var(--accent); font-weight:700;}
+svg .warnE{stroke:var(--warn); stroke-width:2; fill:none;}
+svg .warn-t{fill:var(--warn); font-weight:700;}
+svg .dash{stroke-dasharray:5 4;}
+svg .dia{fill:var(--accent-soft); stroke:var(--accent); stroke-width:1.6;}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">好賣+ 知識庫 · 機制說明圖</div>
+  <h1>代收代號與貨款動線</h1>
+  <div class="meta">依 2026/09/03 內部討論（Ken 主講）＋ ken 手繪圖 ＋ 日翊怡亭代收代號資料整理 ·
+  詳細文字版見同資料夾 <code>0903好賣+ 代收代號 貨款邏輯_整理.md</code></div>
+</header>
+
+<h2><span class="no">01</span>總判準：訂單走哪一條核帳路</h2>
+<p class="lede">會末收斂的「final answer」：看訂單有沒有「店」參與。有店走全家既有體系；完全沒有店就走宅配機制，由對方出合帳檔。</p>
+<figure>
+<svg viewBox="0 0 840 300" role="img" aria-label="判準流程：有店參與走全家既有機制，無店（社區寄社區、宅配）走宅配機制">
+  <defs>
+    <marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+    <marker id="a1g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker>
+  </defs>
+  <rect class="box" x="30" y="120" width="120" height="56" rx="8"/>
+  <text x="90" y="144" text-anchor="middle" class="b">一張訂單</text>
+  <text x="90" y="163" text-anchor="middle" class="sm">好賣+ 各服務</text>
+
+  <polygon class="dia" points="310,148 230,110 310,72 390,110"/>
+  <text x="310" y="105" text-anchor="middle" class="b">有「店」參與？</text>
+  <text x="310" y="123" text-anchor="middle" class="sm">寄件端或取件端是店舖</text>
+  <line class="edge" x1="150" y1="148" x2="252" y2="128" marker-end="url(#a1)"/>
+
+  <line class="money" x1="390" y1="110" x2="490" y2="82" marker-end="url(#a1g)"/>
+  <text x="432" y="80" class="money-t">是</text>
+  <rect class="box" x="492" y="40" width="318" height="92" rx="8" style="stroke:var(--accent);stroke-width:2"/>
+  <text x="510" y="66" class="b">全家既有機制（＝現行店取信用卡機制）</text>
+  <text x="510" y="88" class="sm">店寄店 · 店寄社 · 社寄店</text>
+  <text x="510" y="108" class="sm">用「代收代號」與全家對帳、全家開對帳單</text>
+
+  <line class="edge" x1="310" y1="148" x2="310" y2="200" marker-end="url(#a1)"/>
+  <text x="322" y="180" class="b">否</text>
+  <rect class="box" x="160" y="202" width="300" height="88" rx="8"/>
+  <text x="178" y="228" class="b">宅配機制</text>
+  <text x="178" y="250" class="sm">社區寄社區（全家收不到錢、無代收代號）</text>
+  <text x="178" y="270" class="sm">宅配通訂單（本來就走這條）</text>
+
+  <line class="edge dash" x1="460" y1="246" x2="586" y2="246" marker-end="url(#a1)"/>
+  <text x="523" y="238" text-anchor="middle" class="sm">對方出合帳檔</text>
+  <rect class="boxsoft" x="588" y="214" width="222" height="64" rx="8"/>
+  <text x="600" y="240" class="sm">社寄社：日翊＝宅配廠角色</text>
+  <text x="600" y="260" class="sm">出檔 → 全網確認 → 全網付款</text>
+</svg>
+<figcaption>圖 1 — 核帳路線判準。「只要有店的，走全家的（現行店取信用卡機制）；沒有經過店的，就走宅配機制」。社寄社由日翊擔任宅配廠角色出合帳檔——此環節為會中推論，尚待三方共識。</figcaption>
+</figure>
+
+<h2><span class="no">02</span>常溫架構：寄 × 取 × 有無代收款（＝ken 手繪圖）</h2>
+<p class="lede">三個代收代號中，只有「取・有代收款」這條路有錢；全家每月也只出一份對帳檔，所有「取」都在裡面。</p>
+<figure>
+<svg viewBox="0 0 860 330" role="img" aria-label="常溫分寄與取：線上寄與線下寄無帳，取有代收款有帳，無代收款為信用卡走宅配機制">
+  <defs>
+    <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+    <marker id="a2g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker>
+  </defs>
+  <text x="30" y="36" class="b" style="font-size:15px">常溫（母代 148）</text>
+
+  <rect class="box" x="30" y="70" width="72" height="44" rx="8"/>
+  <text x="66" y="97" text-anchor="middle" class="b">寄</text>
+  <line class="edge" x1="102" y1="82" x2="176" y2="72" marker-end="url(#a2)"/>
+  <line class="edge" x1="102" y1="102" x2="176" y2="128" marker-end="url(#a2)"/>
+
+  <rect class="box" x="178" y="50" width="270" height="46" rx="8"/>
+  <text x="192" y="70" class="b">① 線上寄（網路印單）</text>
+  <text x="192" y="88" class="sm">寄件編號從網站取得</text>
+  <text x="404" y="79" class="mono" text-anchor="middle">88I</text>
+  <rect class="box" x="178" y="108" width="270" height="46" rx="8"/>
+  <text x="192" y="128" class="b">② 線下寄（店舖印單）</text>
+  <text x="192" y="146" class="sm">FamiPort 印好賣+寄件單</text>
+  <text x="404" y="137" class="mono" text-anchor="middle">KCU</text>
+
+  <text x="486" y="79" class="sm">✕ 無帳（寄裡面沒有錢）</text>
+  <text x="486" y="137" class="sm">✕ 無帳；運費之後從代收款「後扣」</text>
+
+  <rect class="box" x="30" y="190" width="72" height="44" rx="8"/>
+  <text x="66" y="217" text-anchor="middle" class="b">取</text>
+  <line class="edge" x1="102" y1="202" x2="176" y2="192" marker-end="url(#a2)"/>
+  <line class="edge" x1="102" y1="222" x2="176" y2="248" marker-end="url(#a2)"/>
+
+  <rect class="box" x="178" y="170" width="270" height="46" rx="8" style="stroke:var(--accent);stroke-width:2"/>
+  <text x="192" y="190" class="b">③ 取・有代收款（貨到付款）</text>
+  <text x="192" y="208" class="sm">有貨款＝有代收款；冷凍取付同此代號</text>
+  <text x="404" y="199" class="mono money-t" text-anchor="middle">781</text>
+  <line class="money" x1="448" y1="193" x2="520" y2="193" marker-end="url(#a2g)"/>
+  <text x="486" y="185" class="money-t" text-anchor="middle">✓ 有帳</text>
+  <rect class="boxsoft" x="522" y="168" width="308" height="50" rx="8"/>
+  <text x="536" y="188" class="sm">唯一有錢的代號 → 進「後扣」金流（圖 3）</text>
+  <text x="536" y="206" class="sm">全家每月 1 份對帳檔，所有「取」都在裡面</text>
+
+  <rect class="box" x="178" y="228" width="270" height="46" rx="8"/>
+  <text x="192" y="248" class="b">取・無代收款＝信用卡</text>
+  <text x="192" y="266" class="sm">取貨不付款，貨款不經店／全家</text>
+  <text x="486" y="257" class="sm">✕ 無帳 → 走宅配機制（圖 4、5）</text>
+
+  <text x="30" y="312" class="sm">※「退回寄件店」情境用的代收代號已確認是錯的（錯了多年），新代號待全家（玟瑩）提供後交 Alan 設定。</text>
+</svg>
+<figcaption>圖 2 — 常溫「寄 × 取」架構與三個代收代號的對應，即 ken 手繪圖上半部：寄（上＝線上、下＝線下）皆無帳，取分有／無代收款，「信」（信用卡）指向無代收款。有帳的只有取件店代號 781。</figcaption>
+</figure>
+
+<h2><span class="no">03</span>取貨付款金流：代收款與運費「後扣」</h2>
+<p class="lede">錢只以「貨款」一包進來，運費是撥款當下在我們系統裡扣的——所以全家不需要另外給運費的帳，「寄」的代號也就沒有帳。</p>
+<figure>
+<svg viewBox="0 0 880 300" role="img" aria-label="買家貨到付款，店鋪代收回繳全家，全家每月給合帳檔與代收款，平台後扣運費撥賣家，運費回給全家，全家開請款">
+  <defs>
+    <marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+    <marker id="a3g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker>
+  </defs>
+  <rect class="box" x="20" y="60" width="100" height="50" rx="8"/>
+  <text x="70" y="90" text-anchor="middle" class="b">買家</text>
+  <line class="money" x1="120" y1="85" x2="200" y2="85" marker-end="url(#a3g)"/>
+  <text x="160" y="70" text-anchor="middle" class="money-t mono">1,000</text>
+  <text x="160" y="105" text-anchor="middle" class="sm">貨到付款（含運）</text>
+
+  <rect class="box" x="202" y="60" width="100" height="50" rx="8"/>
+  <text x="252" y="90" text-anchor="middle" class="b">店鋪</text>
+  <line class="money" x1="302" y1="85" x2="382" y2="85" marker-end="url(#a3g)"/>
+  <text x="342" y="70" text-anchor="middle" class="sm">代收款回繳</text>
+
+  <rect class="box" x="384" y="60" width="110" height="50" rx="8" style="stroke:var(--accent);stroke-width:2"/>
+  <text x="439" y="90" text-anchor="middle" class="b">全家</text>
+  <line class="money" x1="494" y1="85" x2="600" y2="85" marker-end="url(#a3g)"/>
+  <text x="547" y="63" text-anchor="middle" class="money-t mono">1,000</text>
+  <text x="547" y="105" text-anchor="middle" class="sm">合帳檔＋代收款</text>
+  <text x="547" y="121" text-anchor="middle" class="sm">（每月一份）</text>
+
+  <rect class="box" x="602" y="52" width="130" height="66" rx="8"/>
+  <text x="667" y="80" text-anchor="middle" class="b">全網平台</text>
+  <text x="667" y="100" text-anchor="middle" class="sm">系統「後扣」運費</text>
+
+  <line class="money" x1="732" y1="85" x2="820" y2="85" marker-end="url(#a3g)"/>
+  <text x="776" y="70" text-anchor="middle" class="money-t mono">961</text>
+  <rect class="box" x="822" y="60" width="46" height="50" rx="8"/>
+  <text x="845" y="90" text-anchor="middle" class="b">賣家</text>
+
+  <path class="money" d="M640,118 C600,190 500,190 452,120" marker-end="url(#a3g)"/>
+  <text x="546" y="185" text-anchor="middle" class="money-t mono">39</text>
+  <text x="546" y="204" text-anchor="middle" class="sm">扣下的運費付給全家</text>
+
+  <path class="edge dash" d="M470,118 C520,235 620,235 668,128" marker-end="url(#a3)"/>
+  <text x="572" y="248" text-anchor="middle" class="sm">運費請款單／發票（推定）</text>
+
+  <text x="20" y="286" class="sm">※ 例取自錄音：收到代收款 1,000 → 扣運費 39 → 961 撥賣家、39 給全家。要分開梳理的是「代收款動向」與「運費動向」兩條線。</text>
+</svg>
+<figcaption>圖 3 — 取貨付款（後扣）金流。綠色為錢的實際流向；因運費是平台從代收款扣回去給全家的，全家端不會、也不需要出現「寄」的帳。</figcaption>
+</figure>
+
+<h2><span class="no">04</span>宅配機制：對方出帳、全網付款、再與全家清款</h2>
+<p class="lede">信用卡（取貨不付款）走的就是這條：全家全程沒有帳，由宅配廠出合帳單。</p>
+<figure>
+<svg viewBox="0 0 860 210" role="img" aria-label="宅配通每月出合帳單給全網，全網確認後付款給宅配通，另與全家清款運費">
+  <defs>
+    <marker id="a4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+    <marker id="a4g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker>
+  </defs>
+  <rect class="box" x="40" y="50" width="180" height="60" rx="8"/>
+  <text x="130" y="76" text-anchor="middle" class="b">宅配廠（宅配通）</text>
+  <text x="130" y="96" text-anchor="middle" class="sm">社寄社時＝日翊（推論）</text>
+
+  <line class="edge" x1="220" y1="68" x2="392" y2="68" marker-end="url(#a4)"/>
+  <text x="306" y="58" text-anchor="middle" class="sm">① 每月出合帳單</text>
+  <line class="money" x1="392" y1="94" x2="220" y2="94" marker-end="url(#a4g)"/>
+  <text x="306" y="116" text-anchor="middle" class="money-t">③ 確認沒問題 → 付款</text>
+
+  <rect class="box" x="394" y="50" width="150" height="60" rx="8"/>
+  <text x="469" y="76" text-anchor="middle" class="b">全網</text>
+  <text x="469" y="96" text-anchor="middle" class="sm">② 逐筆核對</text>
+
+  <line class="money" x1="544" y1="80" x2="700" y2="80" marker-end="url(#a4g)"/>
+  <text x="622" y="70" text-anchor="middle" class="sm">④ 另跟全家清款（運費）</text>
+  <rect class="box" x="702" y="50" width="120" height="60" rx="8"/>
+  <text x="762" y="76" text-anchor="middle" class="b">全家</text>
+  <text x="762" y="96" text-anchor="middle" class="sm">全程沒有帳</text>
+
+  <text x="40" y="180" class="sm">※ 順序①→④為真實作業順序：先收帳、核對、付款，最後才與全家結清運費相關款項。</text>
+</svg>
+<figcaption>圖 4 — 宅配機制的四步。與圖 3 的差別在「誰先出帳」：店寄體系是全家給檔給錢、平台後扣；宅配體系是廠商請款、全網主動把錢給出去。</figcaption>
+</figure>
+
+<h2><span class="no">05</span>社區取（信用卡預付）：運費方向「逆過來」</h2>
+<p class="lede">貨款刷卡當下就進賣家帳戶，不經店、不經全家——平台反而要向賣家「要回」運費，再轉付物流端。這就是手繪圖上的 IOU。</p>
+<figure>
+<svg viewBox="0 0 880 320" role="img" aria-label="買家刷卡貨款直接進賣家藍新帳戶；全網向賣家收回運費再轉付物流端；日翊以宅配廠角色出合帳檔">
+  <defs>
+    <marker id="a5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+    <marker id="a5g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker>
+    <marker id="a5w" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--warn)"/></marker>
+  </defs>
+  <rect class="box" x="30" y="42" width="110" height="50" rx="8"/>
+  <text x="85" y="72" text-anchor="middle" class="b">買家</text>
+  <line class="money" x1="140" y1="67" x2="330" y2="67" marker-end="url(#a5g)"/>
+  <text x="235" y="52" text-anchor="middle" class="money-t">刷卡（預付）— 貨款直接入帳</text>
+  <text x="235" y="87" text-anchor="middle" class="sm">不經店舖、不經全家</text>
+  <rect class="box" x="332" y="42" width="190" height="50" rx="8" style="stroke:var(--accent);stroke-width:2"/>
+  <text x="427" y="66" text-anchor="middle" class="b">賣家（藍新帳戶）</text>
+  <text x="427" y="84" text-anchor="middle" class="sm">＝錢在全網這一側</text>
+
+  <rect class="box" x="332" y="170" width="190" height="56" rx="8"/>
+  <text x="427" y="194" text-anchor="middle" class="b">全網平台</text>
+  <text x="427" y="214" text-anchor="middle" class="sm">社區取只能開信用卡</text>
+
+  <line class="warnE" x1="405" y1="170" x2="405" y2="92" marker-end="url(#a5w)"/>
+  <text x="392" y="136" text-anchor="end" class="warn-t">① 向賣家收回運費</text>
+  <text x="392" y="154" text-anchor="end" class="sm">IOU：與店到店「從代收款後扣」方向相反</text>
+
+  <line class="warnE" x1="522" y1="198" x2="700" y2="198" marker-end="url(#a5w)"/>
+  <text x="611" y="188" text-anchor="middle" class="warn-t">② 轉付運費給物流端</text>
+  <rect class="box" x="702" y="170" width="150" height="56" rx="8"/>
+  <text x="777" y="194" text-anchor="middle" class="b">全家／日翊</text>
+  <text x="777" y="214" text-anchor="middle" class="sm">日翊先墊付（出運力）</text>
+
+  <path class="edge dash" d="M760,226 C700,290 500,290 445,228" marker-end="url(#a5)"/>
+  <text x="600" y="282" text-anchor="middle" class="sm">日翊＝宅配廠角色：出合帳檔（錄音稱 R96，推定；規格上僅見 R89／R98／R99）</text>
+
+  <text x="30" y="312" class="sm">※「信用卡取貨不付款是否與既有對帳檔同一張」現場沒有答案（「看起來同一張」），待三方確認。</text>
+</svg>
+<figcaption>圖 5 — 社區取的貨款與運費動向。綠色是貨款（一開始就在賣家端），琥珀色是逆向的運費——平台要跟賣家收回、再付給先墊付的物流端；由誰出合帳檔、檔案長怎樣，是目前最大的未決題。</figcaption>
+</figure>
+
+<h2><span class="no">06</span>代收代號總對照</h2>
+<div class="tablebox">
+<table>
+  <thead><tr><th>服務</th><th>店鋪印單（線下寄）</th><th>網路印單（線上寄）</th><th>取件店</th><th>有帳的路</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>一般好賣（母代 <span class="code">148</span>）</td>
+      <td><span class="code">KCU</span> <span class="pill no">無帳</span></td>
+      <td><span class="code">88I</span> <span class="pill no">無帳</span></td>
+      <td><span class="code">781</span> <span class="pill ok">✓ 有帳</span></td>
+      <td>取貨付款（後扣運費）</td>
+    </tr>
+    <tr>
+      <td>店寄社</td>
+      <td><span class="code">K6T</span> <span class="pill alert">⚠ 對應待確認</span></td>
+      <td><span class="code">92K</span> <span class="pill alert">⚠ 對應待確認</span></td>
+      <td>—（取件端是社區，不跟全家核）</td>
+      <td>信用卡預付 → 無</td>
+    </tr>
+    <tr>
+      <td>社寄店</td>
+      <td colspan="2">—（寄件端是社區）</td>
+      <td><span class="code">557</span></td>
+      <td>信用卡預付 → 無</td>
+    </tr>
+    <tr>
+      <td>社寄社</td>
+      <td colspan="3">全家側未設代收代號</td>
+      <td>走宅配機制、日翊出合帳檔（待定）</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="callout alert"><strong>⚠ 92K／K6T 對應矛盾：</strong>怡亭資料前段寫「寄件 W（Web 網路印單）＝92K、寄件 F（FamiPort 店舖印單）＝K6T」，後段對照表卻相反。上表暫依前段字母語意（W=Web／F=FamiPort），<strong>務必向怡亭確認正確對應後更正</strong>。</div>
+<div class="callout"><strong>核帳方向（怡亭）：</strong>好賣所有服務一律 <span class="code">好賣 ↔ 全家 → 日翊</span>；賠償為 <span class="code">好賣 ← 日翊</span>（R89）。</div>
+
+<h2><span class="no">07</span>待確認事項</h2>
+<ul class="todo">
+  <li><strong>玟瑩（全家）</strong>：「退回寄件店」新代收代號何時給（拿到轉 Alan 設定）；社區取核帳若比照既有好賣+，現有代號（92K／K6T／557）是否夠用。</li>
+  <li><strong>怡亭（日翊）</strong>：92K／K6T 與網路／店舖印單的正確對應；社寄社合帳檔（檔名、內容、寄件節或取件節）。</li>
+  <li><strong>財會／帳務中心</strong>：拿到什麼、怎麼產檔、拿什麼檔來對——梳理「代收款」「運費」兩條動線各自對到哪個檔。</li>
+  <li><strong>三方會議</strong>：社區取帳務歸路（本頁圖 1 的判準）需好賣+、全家、日翊共識定案。</li>
+</ul>
+
+<footer>來源：<span class="code">0903好賣+ 代收代號 貨款邏輯.m4a</span>（30.6 分，收音不佳已交叉校正）· ken 手繪圖 · 日翊怡亭代收代號資料 · 0827 與日翊線上會議整理。標「推定」「待確認」者尚未定案，引用前請先核實。</footer>
+</div>
