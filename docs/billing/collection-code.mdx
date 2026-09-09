@@ -1,0 +1,167 @@
+---
+sidebar_position: 8
+title: 代收代號
+hide_table_of_contents: true
+---
+
+# 代收代號與貨款動線
+
+代收代號是好賣+ 與全家對帳的基本單位。同一筆常溫訂單在「寄」與「取」兩端各有自己的代號，但**只有取件端、且有代收款的那一條路才會產生帳**。
+
+> 💡 **提醒**：本頁說明的是代收代號與其對應的貨款、運費動線；運費本身「後扣」的計算方式請見[運費後扣機制](./)。
+
+## 常溫架構：寄 × 取 × 有無代收款
+
+三個代收代號中，只有「取・有代收款」這條路有錢；全家每月也只出一份對帳檔，所有「取」都在裡面。
+
+<figure className="kbfig">
+<svg viewBox="0 0 860 292" role="img" aria-label="常溫分寄與取：線上寄 88I 與線下寄 KCU 皆無帳、運費之後從代收款後扣；取有代收款 781 有帳，取無代收款為信用卡、走宅配機制">
+  <defs>
+    <marker id="cc1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="currentColor" /></marker>
+    <marker id="cc1g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--famistore-secondary)" /></marker>
+  </defs>
+  <text x="30" y="36" className="b" style={{fontSize: '15px'}}>常溫（母代 148）</text>
+  <rect className="box" x="30" y="70" width="72" height="44" rx="8" />
+  <text x="66" y="97" textAnchor="middle" className="b">寄</text>
+  <line className="edge" x1="102" y1="82" x2="176" y2="72" markerEnd="url(#cc1)" />
+  <line className="edge" x1="102" y1="102" x2="176" y2="128" markerEnd="url(#cc1)" />
+  <rect className="box" x="178" y="50" width="270" height="46" rx="8" />
+  <text x="192" y="70" className="b">① 線上寄（網路印單）</text>
+  <text x="192" y="88" className="sm">寄件編號從網站取得</text>
+  <text x="404" y="79" className="mono" textAnchor="middle">88I</text>
+  <rect className="box" x="178" y="108" width="270" height="46" rx="8" />
+  <text x="192" y="128" className="b">② 線下寄（店舖印單）</text>
+  <text x="192" y="146" className="sm">FamiPort 印好賣+寄件單</text>
+  <text x="404" y="137" className="mono" textAnchor="middle">KCU</text>
+  <text x="486" y="79" className="sm">✕ 無帳；運費之後從代收款【後扣】</text>
+  <text x="486" y="137" className="sm">✕ 無帳；運費之後從代收款【後扣】</text>
+  <rect className="box" x="30" y="190" width="72" height="44" rx="8" />
+  <text x="66" y="217" textAnchor="middle" className="b">取</text>
+  <line className="edge" x1="102" y1="202" x2="176" y2="192" markerEnd="url(#cc1)" />
+  <line className="edge" x1="102" y1="222" x2="176" y2="248" markerEnd="url(#cc1)" />
+  <rect className="box-hi" x="178" y="170" width="270" height="46" rx="8" />
+  <text x="192" y="190" className="b">③ 取・有代收款（貨到付款）</text>
+  <text x="192" y="208" className="sm">有貨款＝有代收款；冷凍取付同此代號</text>
+  <text x="404" y="199" className="mono money-t" textAnchor="middle">781</text>
+  <line className="money" x1="448" y1="193" x2="520" y2="193" markerEnd="url(#cc1g)" />
+  <text x="486" y="185" className="money-t" textAnchor="middle">✓ 有帳</text>
+  <rect className="boxsoft" x="522" y="168" width="308" height="50" rx="8" />
+  <text x="536" y="188" className="sm">唯一有錢的代號 → 進「後扣」金流（見下節）</text>
+  <text x="536" y="206" className="sm">全家每月 1 份對帳檔，所有「取」都在裡面</text>
+  <rect className="box" x="178" y="228" width="270" height="46" rx="8" />
+  <text x="192" y="248" className="b">取・無代收款＝信用卡</text>
+  <text x="192" y="266" className="sm">取貨不付款，貨款不經店／全家</text>
+  <text x="486" y="257" className="sm">✕ 無帳 → 走宅配機制</text>
+</svg>
+<figcaption>常溫「寄 × 取」架構與三個代收代號的對應：寄（線上／線下）皆無帳，取分有／無代收款。有帳的只有取件店代號 781。</figcaption>
+</figure>
+
+常溫的母代為 **148**，底下再分寄件端（線上／線下）與取件端（有／無代收款）：
+
+| 路徑 | 代收代號 | 說明 | 有無帳 |
+| --- | --- | --- | --- |
+| ① 線上寄（網路印單） | `88I` | 寄件編號從網站取得 | ✕ 無帳，運費之後從代收款【後扣】 |
+| ② 線下寄（店舖印單） | `KCU` | FamiPort 印好賣+寄件單 | ✕ 無帳，運費之後從代收款【後扣】 |
+| ③ 取・有代收款（貨到付款） | `781` | 有貨款＝有代收款；冷凍取付同此代號 | ✓ **有帳** |
+| 取・無代收款＝信用卡 | — | 取貨不付款，貨款不經店／全家 | ✕ 無帳，走宅配機制 |
+
+:::info[為什麼「寄」沒有帳？]
+寄件端的兩個代號（`88I`、`KCU`）都不經手金錢，運費是**之後從代收款「後扣」回來的**，所以全家端不會產生「寄」的帳。
+:::
+
+---
+
+## 取貨付款金流：代收款與運費「後扣」
+
+錢只以「貨款」一包進來，運費是撥款當下在我們系統裡扣的——所以全家不需要另外給運費的帳，「寄」的代號也就沒有帳。
+
+<figure className="kbfig">
+<svg viewBox="0 0 880 268" role="img" aria-label="買家貨到付款 1000 給店鋪，店鋪代收款回繳全家，全家每月給合帳檔與代收款，全網平台後扣運費後撥 961 給賣家，扣下的 39 元運費付給全家，全家開運費請款單">
+  <defs>
+    <marker id="cc2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="currentColor" /></marker>
+    <marker id="cc2g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--famistore-secondary)" /></marker>
+  </defs>
+  <rect className="box" x="20" y="60" width="100" height="50" rx="8" />
+  <text x="70" y="90" textAnchor="middle" className="b">買家</text>
+  <line className="money" x1="120" y1="85" x2="200" y2="85" markerEnd="url(#cc2g)" />
+  <text x="160" y="70" textAnchor="middle" className="money-t mono">1,000</text>
+  <text x="160" y="105" textAnchor="middle" className="sm">貨到付款（含運）</text>
+  <rect className="box" x="202" y="60" width="100" height="50" rx="8" />
+  <text x="252" y="90" textAnchor="middle" className="b">店鋪</text>
+  <line className="money" x1="302" y1="85" x2="382" y2="85" markerEnd="url(#cc2g)" />
+  <text x="342" y="70" textAnchor="middle" className="sm">代收款回繳</text>
+  <rect className="box-hi" x="384" y="60" width="110" height="50" rx="8" />
+  <text x="439" y="90" textAnchor="middle" className="b">全家</text>
+  <line className="money" x1="494" y1="85" x2="600" y2="85" markerEnd="url(#cc2g)" />
+  <text x="547" y="63" textAnchor="middle" className="money-t mono">1,000</text>
+  <text x="547" y="105" textAnchor="middle" className="sm">合帳檔＋代收款</text>
+  <text x="547" y="121" textAnchor="middle" className="sm">（每月一份）</text>
+  <rect className="box" x="602" y="52" width="130" height="66" rx="8" />
+  <text x="667" y="80" textAnchor="middle" className="b">全網平台</text>
+  <text x="667" y="100" textAnchor="middle" className="sm">系統「後扣」運費</text>
+  <line className="money" x1="732" y1="85" x2="820" y2="85" markerEnd="url(#cc2g)" />
+  <text x="776" y="70" textAnchor="middle" className="money-t mono">961</text>
+  <rect className="box" x="822" y="60" width="46" height="50" rx="8" />
+  <text x="845" y="90" textAnchor="middle" className="b">賣家</text>
+  <path className="money" d="M640,118 C604,176 496,176 452,120" markerEnd="url(#cc2g)" />
+  <text x="546" y="170" textAnchor="middle" className="money-t mono">39</text>
+  <text x="546" y="189" textAnchor="middle" className="sm">扣下的運費付給全家</text>
+  <path className="edge dash" d="M470,120 C524,246 616,246 668,128" markerEnd="url(#cc2)" />
+  <text x="572" y="258" textAnchor="middle" className="sm">運費請款單</text>
+</svg>
+<figcaption>取貨付款（後扣）金流。綠色為錢的實際流向；因運費是平台從代收款扣回去給全家的，全家端不會、也不需要出現「寄」的帳。</figcaption>
+</figure>
+
+| 步驟 | 動作 | 金額 |
+| --- | --- | --- |
+| 1 | 買家貨到付款（含運）給店鋪 | 1,000 |
+| 2 | 店鋪將代收款回繳全家 | 1,000 |
+| 3 | 全家每月一份合帳檔＋代收款給全網平台 | 1,000 |
+| 4 | 全網平台系統「後扣」運費後撥款給賣家 | 961 |
+| 5 | 扣下的運費付給全家（全家開運費請款單） | 39 |
+
+---
+
+## 宅配機制：對方出帳、全網付款、再與全家清款
+
+信用卡（取貨不付款）走的就是這條：全家全程沒有帳，由宅配廠出合帳單。
+
+<figure className="kbfig">
+<svg viewBox="0 0 860 210" role="img" aria-label="宅配廠每月出合帳單給全網，全網逐筆核對後付款給宅配廠，另跟全家清款運費，全家全程沒有帳">
+  <defs>
+    <marker id="cc3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="currentColor" /></marker>
+    <marker id="cc3g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--famistore-secondary)" /></marker>
+  </defs>
+  <rect className="box" x="40" y="50" width="180" height="60" rx="8" />
+  <text x="130" y="76" textAnchor="middle" className="b">宅配廠（宅配通）</text>
+  <text x="130" y="96" textAnchor="middle" className="sm">社寄社時＝日翊（推論）</text>
+  <line className="edge" x1="220" y1="68" x2="392" y2="68" markerEnd="url(#cc3)" />
+  <text x="306" y="58" textAnchor="middle" className="sm">① 每月出合帳單</text>
+  <line className="money" x1="392" y1="94" x2="220" y2="94" markerEnd="url(#cc3g)" />
+  <text x="306" y="116" textAnchor="middle" className="money-t">③ 確認沒問題 → 付款</text>
+  <rect className="box" x="394" y="50" width="150" height="60" rx="8" />
+  <text x="469" y="76" textAnchor="middle" className="b">全網</text>
+  <text x="469" y="96" textAnchor="middle" className="sm">② 逐筆核對</text>
+  <line className="money" x1="544" y1="80" x2="700" y2="80" markerEnd="url(#cc3g)" />
+  <text x="622" y="70" textAnchor="middle" className="sm">④ 另跟全家清款（運費）</text>
+  <rect className="box" x="702" y="50" width="120" height="60" rx="8" />
+  <text x="762" y="76" textAnchor="middle" className="b">全家</text>
+  <text x="762" y="96" textAnchor="middle" className="sm">全程沒有帳</text>
+  <text x="40" y="180" className="sm">※ 順序①→④為真實作業順序：先收帳、核對、付款，最後才與全家結清運費相關款項。</text>
+</svg>
+<figcaption>宅配機制的四步。與上一節的差別在「誰先出帳」：店寄體系是全家給檔給錢、平台後扣；宅配體系是廠商請款、全網主動把錢給出去。</figcaption>
+</figure>
+
+---
+
+## 代收代號總對照
+
+| 服務 | 店鋪印單（線下寄） | 網路印單（線上寄） | 取件店 | 有帳的路 |
+| --- | --- | --- | --- | --- |
+| 一般好賣（母代 `148`） | `KCU` 無帳 | `88I` 無帳 | `781` ✓ **有帳** | 取貨付款（後扣運費） |

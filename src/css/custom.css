@@ -52,3 +52,90 @@ blockquote {
   background-color: var(--famistore-secondary-light);
   color: #fff;
 }
+
+/* ---------------------------------------------------------------
+ * 知識庫機制圖（inline SVG）
+ * 供 .mdx 內手繪流程圖使用，顏色一律走 Infima 變數，
+ * 因此淺色／深色模式會自動切換。
+ * --------------------------------------------------------------- */
+.kbfig {
+  margin: 0 0 1.5rem;
+  background: var(--ifm-background-surface-color);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 10px;
+  padding: 20px 16px 8px;
+  overflow-x: auto;
+}
+
+.kbfig svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* 窄螢幕才允許橫向捲動，桌機一律填滿欄寬、不裁切 */
+  min-width: 520px;
+  margin: 0 auto;
+  color: var(--ifm-font-color-base);
+}
+
+.kbfig figcaption {
+  font-size: 0.8rem;
+  line-height: 1.7;
+  color: var(--ifm-color-emphasis-700);
+  border-top: 1px dashed var(--ifm-color-emphasis-200);
+  margin-top: 12px;
+  padding: 10px 4px 6px;
+}
+
+/* 文字 */
+.kbfig svg text {
+  font-family: var(--ifm-font-family-base);
+  font-size: 12.5px;
+  fill: currentColor;
+}
+.kbfig svg text.sm {
+  font-size: 11px;
+  fill: var(--ifm-color-emphasis-700);
+}
+.kbfig svg text.b {
+  font-weight: 700;
+}
+.kbfig svg text.mono {
+  font-family: var(--ifm-font-family-monospace);
+  font-weight: 700;
+}
+.kbfig svg text.money-t {
+  fill: var(--famistore-secondary);
+  font-weight: 700;
+}
+
+/* 節點 */
+.kbfig svg .box {
+  fill: var(--ifm-background-surface-color);
+  stroke: currentColor;
+  stroke-width: 1.4;
+}
+.kbfig svg .box-hi {
+  fill: var(--ifm-background-surface-color);
+  stroke: var(--famistore-secondary);
+  stroke-width: 2;
+}
+.kbfig svg .boxsoft {
+  fill: var(--ifm-color-emphasis-100);
+  stroke: var(--ifm-color-emphasis-300);
+  stroke-width: 1;
+}
+
+/* 連線 */
+.kbfig svg .edge {
+  stroke: currentColor;
+  stroke-width: 1.4;
+  fill: none;
+}
+.kbfig svg .money {
+  stroke: var(--famistore-secondary);
+  stroke-width: 2;
+  fill: none;
+}
+.kbfig svg .dash {
+  stroke-dasharray: 5 4;
+}

@@ -119,10 +119,10 @@ svg .dia{fill:var(--accent-soft); stroke:var(--accent); stroke-width:1.6;}
 <figcaption>圖 1 — 核帳路線判準。「只要有店的，走全家的（現行店取信用卡機制）；沒有經過店的，就走宅配機制」。社寄社由日翊擔任宅配廠角色出合帳檔——此環節為會中推論，尚待三方共識。</figcaption>
 </figure>
 
-<h2><span class="no">02</span>常溫架構：寄 × 取 × 有無代收款（＝ken 手繪圖）</h2>
+<h2><span class="no">02</span>常溫架構：寄 × 取 × 有無代收款</h2>
 <p class="lede">三個代收代號中，只有「取・有代收款」這條路有錢；全家每月也只出一份對帳檔，所有「取」都在裡面。</p>
 <figure>
-<svg viewBox="0 0 860 330" role="img" aria-label="常溫分寄與取：線上寄與線下寄無帳，取有代收款有帳，無代收款為信用卡走宅配機制">
+<svg viewBox="0 0 860 292" role="img" aria-label="常溫分寄與取：線上寄與線下寄無帳，運費之後從代收款後扣；取有代收款有帳，無代收款為信用卡走宅配機制">
   <defs>
     <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
@@ -145,8 +145,8 @@ svg .dia{fill:var(--accent-soft); stroke:var(--accent); stroke-width:1.6;}
   <text x="192" y="146" class="sm">FamiPort 印好賣+寄件單</text>
   <text x="404" y="137" class="mono" text-anchor="middle">KCU</text>
 
-  <text x="486" y="79" class="sm">✕ 無帳（寄裡面沒有錢）</text>
-  <text x="486" y="137" class="sm">✕ 無帳；運費之後從代收款「後扣」</text>
+  <text x="486" y="79" class="sm">✕ 無帳；運費之後從代收款【後扣】</text>
+  <text x="486" y="137" class="sm">✕ 無帳；運費之後從代收款【後扣】</text>
 
   <rect class="box" x="30" y="190" width="72" height="44" rx="8"/>
   <text x="66" y="217" text-anchor="middle" class="b">取</text>
@@ -167,16 +167,13 @@ svg .dia{fill:var(--accent-soft); stroke:var(--accent); stroke-width:1.6;}
   <text x="192" y="248" class="b">取・無代收款＝信用卡</text>
   <text x="192" y="266" class="sm">取貨不付款，貨款不經店／全家</text>
   <text x="486" y="257" class="sm">✕ 無帳 → 走宅配機制（圖 4、5）</text>
-
-  <text x="30" y="312" class="sm">※「退回寄件店」情境用的代收代號已確認是錯的（錯了多年），新代號待全家（玟瑩）提供後交 Alan 設定。</text>
 </svg>
-<figcaption>圖 2 — 常溫「寄 × 取」架構與三個代收代號的對應，即 ken 手繪圖上半部：寄（上＝線上、下＝線下）皆無帳，取分有／無代收款，「信」（信用卡）指向無代收款。有帳的只有取件店代號 781。</figcaption>
 </figure>
 
 <h2><span class="no">03</span>取貨付款金流：代收款與運費「後扣」</h2>
 <p class="lede">錢只以「貨款」一包進來，運費是撥款當下在我們系統裡扣的——所以全家不需要另外給運費的帳，「寄」的代號也就沒有帳。</p>
 <figure>
-<svg viewBox="0 0 880 300" role="img" aria-label="買家貨到付款，店鋪代收回繳全家，全家每月給合帳檔與代收款，平台後扣運費撥賣家，運費回給全家，全家開請款">
+<svg viewBox="0 0 880 300" role="img" aria-label="買家貨到付款，店鋪代收回繳全家，全家每月給合帳檔與代收款，平台後扣運費撥賣家，運費回給全家，全家開運費請款單">
   <defs>
     <marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
@@ -215,7 +212,7 @@ svg .dia{fill:var(--accent-soft); stroke:var(--accent); stroke-width:1.6;}
   <text x="546" y="204" text-anchor="middle" class="sm">扣下的運費付給全家</text>
 
   <path class="edge dash" d="M470,118 C520,235 620,235 668,128" marker-end="url(#a3)"/>
-  <text x="572" y="248" text-anchor="middle" class="sm">運費請款單／發票（推定）</text>
+  <text x="572" y="248" text-anchor="middle" class="sm">運費請款單</text>
 
   <text x="20" y="286" class="sm">※ 例取自錄音：收到代收款 1,000 → 扣運費 39 → 961 撥賣家、39 給全家。要分開梳理的是「代收款動向」與「運費動向」兩條線。</text>
 </svg>
