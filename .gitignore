@@ -3,6 +3,7 @@
 
 # Production
 /build
+/build-link-check
 
 # Generated files
 .docusaurus

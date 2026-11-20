@@ -19,6 +19,15 @@ const config: Config = {
 
   onBrokenLinks: 'throw',
 
+  // 內部知識庫：要求搜尋引擎不要收錄（同時停用 sitemap）。
+  noIndex: true,
+
+  customFields: {
+    // 進站密碼見 src/theme/Root.tsx。正式建置時，伺服器端只輸出密碼視窗，HTML 不含內容，
+    // 因此壞連結檢查改由 `npm run check-links`（設定此旗標、輸出到另一個資料夾、不部署）負責。
+    linkCheckBuild: process.env.KB_LINK_CHECK === '1',
+  },
+
   markdown: {
     mermaid: true,
   },

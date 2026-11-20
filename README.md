@@ -2,6 +2,14 @@
 
 This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
 
+## 進站密碼
+
+整個知識庫需輸入一組共用密碼才能瀏覽（程式在 `src/theme/Root.tsx`、`src/components/PasswordGate/`）。
+
+- **換密碼**：執行 `npm run set-password -- '新密碼'`（密碼用單引號包住），再 commit、push 到 `main`，自動部署後生效，舊密碼即失效。程式裡只存雜湊值，不存密碼原文。
+- **定位是基本門檻**：擋得住拿到網址的一般人，但頁面內容仍以程式碼形式下載到瀏覽器，懂技術的人可繞過；不適合放真正機密的資料。
+- **壞連結檢查**：正式建置的 HTML 不含內容，所以 `npm run build` 會先跑 `npm run check-links`（另外建一份含內容、不部署的版本）來抓壞連結。
+
 ## Installation
 
 ```bash
